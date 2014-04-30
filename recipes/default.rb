@@ -16,7 +16,7 @@ end
 package "nginx"
 
 # create the new main nginx config file
-# do as little as possible in here, most 
+# do as little as possible in here, most
 # of this should be configured per site
 template "/etc/nginx/nginx.conf" do
   owner "root"
@@ -29,8 +29,8 @@ end
 # monit pass through
 if @node[:monit_address]
   template "/etc/nginx/sites-enabled/monit" do
-    owner "deploy"
-    group "deploy"
+    owner "deployer"
+    group "deployer"
     mode "0644"
     source "monit_interface.erb"
     notifies :run, "execute[restart-nginx]", :immediately
